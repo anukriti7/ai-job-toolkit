@@ -26,67 +26,56 @@ JOBS = [
 ]
 
 RESUME_TEMPLATES = {
-    job["role"]: f"""
-### {job["role"]} - Resume Summary
-
+    job["role"]: """
+### {} - Resume Summary
 **Professional Summary**
-Motivated professional with strong skills in {job["skills"].lower()}, proficient in {job["tools"]}. Passionate about leveraging AI tools to deliver high-quality results in remote and India-based roles.
-
+Motivated professional with strong skills in {}, proficient in {}. Passionate about leveraging AI tools to deliver high-quality results in remote and India-based roles.
 **Key Skills**
-- {job["skills"]}
-- Tools: {job["tools"]}
+- {}
+- Tools: {}
 - Remote-first, self-driven, quick learner
-
 **Experience Highlights**
 - Created engaging AI-powered content using industry-leading tools
 - Delivered projects on time with 100% client satisfaction
 - Collaborated with cross-functional teams in remote settings
-
 **Education**
 Relevant certifications in AI tools, prompt engineering, and digital content creation.
-
 **Projects**
 Portfolio of AI-assisted work available on GitHub and personal website.
-"""
+""".format(job["role"], job["skills"].lower(), job["tools"], job["skills"], job["tools"])
+    for job in JOBS
 }
 
 COVER_LETTER_TEMPLATES = {
-    job["role"]: f"""
-### {job["role"]} - Cover Letter
-
+    job["role"]: """
+### {} - Cover Letter
 Dear Hiring Manager,
-
-I am excited to apply for the {job["role"]} position at your organization. With expertise in {job["skills"].lower()} and hands-on experience with {job["tools"]}, I am confident in my ability to contribute meaningfully to your team.
-
+I am excited to apply for the {} position at your organization. With expertise in {} and hands-on experience with {}, I am confident in my ability to contribute meaningfully to your team.
 In my previous work, I have successfully leveraged AI tools to streamline workflows, create compelling content, and deliver results that exceed expectations. I thrive in remote environments and am adept at collaborating across time zones.
-
 I am particularly drawn to this role because of its focus on innovation and the opportunity to work with cutting-edge AI technologies. I am a quick learner, highly organized, and committed to continuous improvement.
-
 Thank you for considering my application. I look forward to discussing how I can add value to your team.
-
 Sincerely,
 [Your Name]
-"""
+""".format(job["role"], job["role"], job["skills"].lower(), job["tools"])
+    for job in JOBS
 }
 
 COLD_EMAIL_TEMPLATES = {
-    job["role"]: f"""
-### {job["role"]} - Cold Email
-
-Subject: {job["role"]} Role - Skilled in {job["skills"].split(",")[0]}
+    job["role"]: """
+### {} - Cold Email
+Subject: {} Role - Skilled in {}
 
 Hi [Hiring Manager Name],
 
-I came across your team and wanted to reach out. I specialize in {job["skills"].lower()} and work with tools like {job["tools"]}.
-
+I came across your team and wanted to reach out. I specialize in {} and work with tools like {}.
 I have helped [brief achievement/example] and would love to bring similar results to your organization.
-
 Would you be open to a quick 15-minute chat this week?
 
 Best regards,
 [Your Name]
 [LinkedIn Profile] | [Portfolio Link]
-"""
+""".format(job["role"], job["role"], job["skills"].split(",")[0], job["skills"].lower(), job["tools"])
+    for job in JOBS
 }
 
 if section == "Home":
@@ -96,16 +85,14 @@ if section == "Home":
     st.metric("Resume Templates", len(RESUME_TEMPLATES))
     st.metric("Cover Letters", len(COVER_LETTER_TEMPLATES))
     st.metric("Cold Emails", len(COLD_EMAIL_TEMPLATES))
-    
     st.markdown("### Quick Start")
     st.markdown("""
-    1. **Job List** - Browse 10 non-coding AI roles with skills and tools
-    2. **Resume Blocks** - Get a ready-to-use resume template for each role
-    3. **Cover Letters** - Download a personalized cover letter template
-    4. **Cold Emails** - Reach out to hiring managers with a professional cold email
-    5. **About** - Learn more about this toolkit
-    """)
-
+ 1. **Job List** - Browse 10 non-coding AI roles with skills and tools
+ 2. **Resume Blocks** - Get a ready-to-use resume template for each role
+ 3. **Cover Letters** - Download a personalized cover letter template
+ 4. **Cold Emails** - Reach out to hiring managers with a professional cold email
+ 5. **About** - Learn more about this toolkit
+""")
 elif section == "Job List":
     st.markdown("---")
     st.header("10 Non-Coding AI Job Roles")
@@ -118,14 +105,12 @@ elif section == "Job List":
             with col2:
                 st.markdown(f"**Tools:** {job['tools']}")
             st.divider()
-
 elif section == "Resume Blocks":
     st.markdown("---")
     st.header("Resume Templates by Role")
     selected_job = st.selectbox("Select a role", [job["role"] for job in JOBS])
     if selected_job:
         st.markdown(RESUME_TEMPLATES[selected_job])
-
 elif section == "Cover Letters":
     st.markdown("---")
     st.header("Cover Letter Templates by Role")
@@ -133,7 +118,6 @@ elif section == "Cover Letters":
     if selected_job:
         st.markdown(COVER_LETTER_TEMPLATES[selected_job])
         st.info("Tip: Replace [Your Name] and customize the bracketed sections before sending!")
-
 elif section == "Cold Emails":
     st.markdown("---")
     st.header("Cold Email Templates by Role")
@@ -141,29 +125,28 @@ elif section == "Cold Emails":
     if selected_job:
         st.markdown(COLD_EMAIL_TEMPLATES[selected_job])
         st.info("Tip: Keep cold emails short, personalized, and action-oriented!")
-
 elif section == "About":
     st.markdown("---")
     st.header("About AI Job Toolkit")
     st.markdown("""
-    This toolkit is designed for job seekers in India and remote workers who want to break into AI-related roles **without coding**.
-    
-    ### What's Inside
-    - **10 Handpicked AI Job Roles** - curated for beginners and career switchers
-    - **Resume Templates** - role-specific, ATS-friendly formats
-    - **Cover Letter Templates** - professional and customizable
-    - **Cold Email Templates** - proven outreach strategies
-    
-    ### How to Use
-    1. Pick a role from the Job List
-    2. Copy the resume block and customize it
-    3. Download the cover letter and add your details
-    4. Send cold emails to hiring managers and recruiters
-    
-    ### Deployment
-    - **Local:** `pip install -r requirements.txt && streamlit run app.py`
-    - **Streamlit Cloud:** Connect this GitHub repo to [share.streamlit.io](https://share.streamlit.io)
-    
-    ### License
-    Free to use for personal and educational purposes.
-    """)
+This toolkit is designed for job seekers in India and remote workers who want to break into AI-related roles **without coding**.
+
+### What's Inside
+- **10 Handpicked AI Job Roles** - curated for beginners and career switchers
+- **Resume Templates** - role-specific, ATS-friendly formats
+- **Cover Letter Templates** - professional and customizable
+- **Cold Email Templates** - proven outreach strategies
+
+### How to Use
+1. Pick a role from the Job List
+2. Copy the resume block and customize it
+3. Download the cover letter and add your details
+4. Send cold emails to hiring managers and recruiters
+
+### Deployment
+- **Local:** `pip install -r requirements.txt && streamlit run app.py`
+- **Streamlit Cloud:** Connect this GitHub repo to [share.streamlit.io](https://share.streamlit.io)
+
+### License
+Free to use for personal and educational purposes.
+""")
